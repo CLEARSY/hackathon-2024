@@ -1,3 +1,4 @@
+![Screenshot](hackathon.jpg)
 # hackathon-2024
 Hackathon organized at IMD/UFRN in Natal from 01/07/2023 to 05/07/2023.
 
