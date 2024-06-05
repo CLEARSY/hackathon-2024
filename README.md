@@ -4,9 +4,18 @@ Hackathon organized at IMD/UFRN in Natal from 01/07/2023 to 05/07/2023.
 
 ## Organization
 This hackathon is organized over 5 consecutive days.
+It will address B modelling and be the occasion to assess:
+- modelling skills using mathematical predicates
+- understanding of the whole process:
+-   specification: how to transform a text in natural language into a formal model,
+-   implementation: knowledge of the B0 principles (only determinstic substitutions and implementable types),
+-   proof: understanding of what a proof obligation is, abiility to trigger automatic provers.
+
 Students can participate alone or in a group, as they wish.
 Every day a new subject will be proposed on this github, with initial B models and directions, to address and solve different issues / problems.
 During the first day, an introduction to the hackathon will be done, explaining what is expected and how the results are going to be evaluated.
+Students are entitled/invited to contribute to each subject until the last day.
+Questions can be asked during the duration of the hackathon but also by email betwwen sessions. The answers to these email questions will be shared on this github. Please refer to it often.  
 
 A final report has to be sent to thierry.lecomte@clearsy.com during the last session on Friday 5th.
 This report (free format) should contain, for each subject:
