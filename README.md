@@ -5,17 +5,21 @@ Hackathon organized at IMD/UFRN in Natal from 01/07/2023 to 05/07/2023.
 ## Organization
 This hackathon is organized over 5 consecutive days.
 Students can participate alone or in a group, as they wish.
-Every day a new subject will be proposed on this github, with initial models and directions, to address and solve different issues / problems.
+Every day a new subject will be proposed on this github, with initial B models and directions, to address and solve different issues / problems.
 During the first day, an introduction to the hackathon will be done, explaining what is expected and how the results are going to be evaluated.
 
 A final report has to be sent to thierry.lecomte@clearsy.com during the last session on Friday 5th.
-This report should contains, for each subject:
+This report (free format) should contain, for each subject:
 - the answer to the questions,
-- the models developped,
-- a screenshot of the proof status.
+- the B models developped, as listings,
+- a screenshot of the proof status, from Atelier B,
+- any justification you consider useful for understanding . 
 
 Based on this report and solely on this report, a score will be given to each report. 
-The author(s) of the report with the highest score will receive a new laptop (15,6" FHD, 16Go RAM, 512Go SSD, Windows 11), a wired mouse, and a bag.  
+The author(s) of the report with the highest score will receive a new laptop (15,6" FHD, 16Go RAM, 512Go SSD, Windows 11), a wired mouse, and a bag.
+In case of ex-aequos, additional criteria will be used in descending order: 
+1) automatic rate of proof (quantitative criterion),
+2) interest and usefulness of explanations (qualitative criterion). 
 
 ## Contents
 This site contains some resources used for the Hackathon:
