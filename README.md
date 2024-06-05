@@ -7,9 +7,9 @@ This hackathon is organized over 5 consecutive days.
 It will address B modelling and be the occasion to assess:
 - modelling skills using mathematical predicates
 - understanding of the whole process:
--   specification: how to transform a text in natural language into a formal model,
--   implementation: knowledge of the B0 principles (only determinstic substitutions and implementable types),
--   proof: understanding of what a proof obligation is, abiility to trigger automatic provers.
+  - specification: how to transform a text in natural language into a formal model,
+  - implementation: knowledge of the B0 principles (only deterministic substitutions and implementable types),
+  - proof: understanding of what a proof obligation is, abiility to trigger automatic provers.
 
 Students can participate alone or in a group, as they wish.
 Every day a new subject will be proposed on this github, with initial B models and directions, to address and solve different issues / problems.
