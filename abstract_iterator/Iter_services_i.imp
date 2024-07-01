@@ -1,0 +1,38 @@
+IMPLEMENTATION
+    Iter_services_i
+REFINES 
+    Iter_services
+SEES
+    Iter_base
+    
+CONCRETE_VARIABLES
+    
+    index
+    
+INVARIANT
+    
+    index : NAT &
+    Todo = index..Last &
+    Done = First..(index-1)
+    
+INITIALISATION
+    
+    index := First
+    
+OPERATIONS
+
+    continue <-- init_iter =
+    BEGIN
+        index := First ;
+        continue := bool (index <= Last)
+    END
+    ;
+    
+    continue, elt <-- next_iter =
+    BEGIN
+        elt := index;
+        index := index + 1 ;
+        continue := bool (index <= Last)
+    END
+    
+END

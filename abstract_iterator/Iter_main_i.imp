@@ -1,0 +1,61 @@
+IMPLEMENTATION
+    Iter_main_i
+REFINES
+    Iter_main
+SEES
+    Iter_base
+IMPORTS
+    Iter_services
+    
+OPERATIONS
+    
+    res <-- nb_MP85 =
+    VAR
+        current, continue, current_is_MP85
+    IN
+        current_is_MP85 := FALSE ;
+        res := 0 ;
+        continue <-- init_iter ;
+        WHILE
+            continue = TRUE
+        DO
+            continue, current <-- next_iter ;
+            current_is_MP85 <-- is_MP85_op (current) ;
+            IF
+                current_is_MP85  = TRUE
+            THEN
+                res := res + 1
+            END
+        INVARIANT
+            Todo \/ Done = Trains &
+            continue = bool (Todo /= {}) &
+            res = card (is_MP85~[{TRUE}] /\ Done)
+        VARIANT
+            card (Todo)
+        END
+    END
+    ;
+    
+    res <-- all_MP85 =
+    VAR
+        current, continue, current_is_MP85
+    IN
+        current_is_MP85 := FALSE ;
+        res := TRUE ;
+        continue <-- init_iter ;
+        WHILE
+            continue = TRUE
+        DO
+            continue, current <-- next_iter ;
+            current_is_MP85 <-- is_MP85_op (current) 
+            /* TO COMPLETE: res := ... */
+        INVARIANT
+            Todo \/ Done = Trains &
+            continue = bool (Todo /= {}) 
+            /* TO COMPLETE: what is the invariant linking res, Done and is_MP85~[{TRUE}] */
+        VARIANT
+            card (Todo)
+        END
+    END
+    
+END
