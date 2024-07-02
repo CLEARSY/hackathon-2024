@@ -1,0 +1,5 @@
+﻿THEORY User_Pass IS
+Operation(Operation_unmask_blocks) & ff(0) & dd(0) & mp & pp(rt.1 | 5);
+Operation(Operation_mask_blocks) & ff(0) & dd(0) & mp & pp(rt.1 | 5);
+Operation(Operation_occupy_blocks) & ff(0) & dd(0) & pr & pp(rt.1 | 5) & pp(rt.1 | 5)
+END 

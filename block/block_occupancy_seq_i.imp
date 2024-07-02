@@ -1,0 +1,54 @@
+IMPLEMENTATION
+	block_occupancy_seq_i
+	
+REFINES
+	block_occupancy_seq
+
+SEES
+	configuration,
+	inputs
+	
+IMPORTS
+	block_occupancy
+
+
+OPERATIONS
+
+	set_block_occupancy =
+	/***************************************************************************
+	  Name :
+	  set_block_occupancy
+	  
+	  Input parameters:
+	  none
+	  
+	  Output parameters:
+	  none
+	  
+	  Functionality:
+	  This function manages block occupancy, by calling functions in the
+	  following order:
+	  - unmask_blocks
+	  - release_tdl_alarm
+	  - set_tdl_alarm
+	  - mask_blocks
+	  - release_blocks
+	  - occupy_blocks
+
+	  Properties:
+	  A block having one of its border detector occupied or having its trackside
+	  detector occupied has to be occupied.
+	  *************************************************************************/
+	BEGIN
+		unmask_blocks ;
+		release_tdl_alarm ;
+		set_tdl_alarm ;
+		mask_blocks ;
+		release_blocks ;
+		occupy_blocks
+	END
+	
+
+END
+
+	

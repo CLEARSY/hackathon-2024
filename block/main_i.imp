@@ -1,0 +1,56 @@
+	/***************************************************************************
+	  Module Name:
+	  main
+	  
+	  Description:
+	  Entry point of project 'block'
+	  
+	  *************************************************************************/
+IMPLEMENTATION
+	main_i
+	
+REFINES
+	main
+
+SEES
+	configuration
+	
+IMPORTS
+	inputs,
+	block_occupancy_seq
+	
+OPERATIONS
+
+	execute_cycle =
+	/***************************************************************************
+	  Operation Name :
+	  execute_cycle
+	  
+	  Input parameters:
+	  none
+	  
+	  Output parameters:
+	  none
+	  
+	  Functionality:
+	  This function gathers all treatment made during one execute cycle,
+	  by calling operations in the following order:
+	  - read_inputs
+	  - save_inputs_prev
+	  - set_block_occupancy
+	  - ...
+
+	  Properties:
+	  - Property 1:
+	  A block having one of its border detector occupied or having its trackside
+	  detector occupied has to be occupied.
+	  *************************************************************************/
+	BEGIN
+		read_inputs ;
+		save_inputs_prev ;
+		set_block_occupancy
+	END
+
+END
+
+	
