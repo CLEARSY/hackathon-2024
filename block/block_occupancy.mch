@@ -8,10 +8,13 @@
 	  *************************************************************************/
 MACHINE
 	block_occupancy
+
+	/* RAFFINEMENT_AUTOMATIQUE */
 	
 SEES
 	configuration,
 	inputs
+
 	
 DEFINITIONS
 
@@ -117,8 +120,10 @@ OPERATIONS
 	  is free.
 	  *************************************************************************/
 	BEGIN
-		skip
-		/* TO COMPLETE: mb := ... */
+		mb := mb -
+		(d_free_b \/
+		 (cfg_b2b_up~  [d_free_td \/ d_free_b] /\
+		  cfg_b2b_down~[d_free_td \/ d_free_b]))
 	END
 	;
 	
@@ -137,10 +142,8 @@ OPERATIONS
 	  If no TDL alarm acknowledgment is received then TDL alarm remains
 	  unchanged.
 	  *************************************************************************/
-	BEGIN
-	    skip
-	/* TO COMPLETE: update tdla */
-
+	IF  cc_tdl_ack = TRUE THEN
+		tdla := {}
 	END
 	;
 
@@ -161,8 +164,8 @@ OPERATIONS
 	  3) The block trackside detector is free.
 	  *************************************************************************/
 	BEGIN
-		skip 
-		/* TO COMPLETE: tdla := ... */
+		tdla := tdla \/
+		    (ob - mb - otd)
 	END
 	;
 
@@ -182,8 +185,8 @@ OPERATIONS
 	  Blocks which do not become unmasked remain unchanged.
 	  *************************************************************************/
 	BEGIN
-		skip
-		/* TO COMPLETE: mb := ... */
+		mb := mb \/
+		    (d_bd2b[obd] - tdla)
 	END
 	;
 	
@@ -205,8 +208,10 @@ OPERATIONS
 	  now released.
 	  ************************************************************************/
 	BEGIN
-		skip
-		/* TO COMPLETE: ob := ... */
+		ob := ob -
+		    ((cc_init \/ (t_block - tdla)) /\
+			 (cfg_b2ed_up \/ cfg_b2ed_down)~
+			 [oed_prev - oed])
 	END
 	;
 	
@@ -225,8 +230,9 @@ OPERATIONS
 	  occupied or when its trackside detector is occupied.
 	  ************************************************************************/
 	BEGIN
-		skip
-		/* TO COMPLETE: ob := ... */
+		ob := ob \/
+		    d_bd2b[obd] \/
+		    otd
 	END
 	
 END
