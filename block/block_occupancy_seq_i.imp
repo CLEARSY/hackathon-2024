@@ -40,12 +40,8 @@ OPERATIONS
 	  detector occupied has to be occupied.
 	  *************************************************************************/
 	BEGIN
-		unmask_blocks ;
-		release_tdl_alarm ;
-		set_tdl_alarm ;
-		mask_blocks ;
-		release_blocks ;
-		occupy_blocks
+		skip
+		/* TO COMPLETE */
 	END
 	
 
