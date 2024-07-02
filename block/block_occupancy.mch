@@ -8,8 +8,6 @@
 	  *************************************************************************/
 MACHINE
 	block_occupancy
-
-	/* RAFFINEMENT_AUTOMATIQUE */
 	
 SEES
 	configuration,
@@ -120,10 +118,8 @@ OPERATIONS
 	  is free.
 	  *************************************************************************/
 	BEGIN
-		mb := mb -
-		(d_free_b \/
-		 (cfg_b2b_up~  [d_free_td \/ d_free_b] /\
-		  cfg_b2b_down~[d_free_td \/ d_free_b]))
+	    skip 
+	    /* TO COMPLETE:  mb := ... */
 	END
 	;
 	
@@ -142,8 +138,9 @@ OPERATIONS
 	  If no TDL alarm acknowledgment is received then TDL alarm remains
 	  unchanged.
 	  *************************************************************************/
-	IF  cc_tdl_ack = TRUE THEN
-		tdla := {}
+	BEGIN    
+	    skip
+	    /* TO COMPLETE: update tdla */
 	END
 	;
 
@@ -164,8 +161,8 @@ OPERATIONS
 	  3) The block trackside detector is free.
 	  *************************************************************************/
 	BEGIN
-		tdla := tdla \/
-		    (ob - mb - otd)
+		skip
+		/* TO COMPLETE: tdla := ... */
 	END
 	;
 
@@ -185,8 +182,8 @@ OPERATIONS
 	  Blocks which do not become unmasked remain unchanged.
 	  *************************************************************************/
 	BEGIN
-		mb := mb \/
-		    (d_bd2b[obd] - tdla)
+		skip 
+		/* TO COMPLETE: mb := ... */
 	END
 	;
 	
@@ -208,10 +205,8 @@ OPERATIONS
 	  now released.
 	  ************************************************************************/
 	BEGIN
-		ob := ob -
-		    ((cc_init \/ (t_block - tdla)) /\
-			 (cfg_b2ed_up \/ cfg_b2ed_down)~
-			 [oed_prev - oed])
+		skip
+		/* TO COMPLETE: ob := ... */
 	END
 	;
 	
@@ -230,10 +225,25 @@ OPERATIONS
 	  occupied or when its trackside detector is occupied.
 	  ************************************************************************/
 	BEGIN
-		ob := ob \/
-		    d_bd2b[obd] \/
-		    otd
-	END
+	   skip
+	   /* TO COMPLETE:  ob := ... */
+	END;
+
+	 p_res <-- read_ob(p_block) =
+	 PRE
+		  p_block : t_block_i &
+		  p_block : t_block
+	 THEN
+		  p_res := bool(p_block : ob)
+	 END;
+
+	 p_res <-- read_tdla(p_block) =
+	 PRE
+		  p_block : t_block_i &
+		  p_block : t_block
+	 THEN
+		  p_res := bool(p_block : tdla)
+	 END
 	
 END
 

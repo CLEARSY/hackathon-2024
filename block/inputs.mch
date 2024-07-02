@@ -153,7 +153,44 @@ OPERATIONS
 	  *************************************************************************/
 	BEGIN
 		oed_prev := oed
-	END
+	END;
+	
+	 res <-- read_cc_tdl_ack =
+	 BEGIN
+		  res := cc_tdl_ack
+	 END;
+
+	 res <-- read_otd(p_block) =
+	 PRE
+		  p_block : t_block_i &
+		  p_block : t_block
+	 THEN
+		  res := bool(p_block : otd)
+	 END;
+
+	 res <-- read_cc_init(p_block) =
+	 PRE
+		  p_block : t_block_i &
+		  p_block : t_block
+	 THEN
+		  res := bool(p_block : cc_init)
+	 END;
+
+	 res <-- read_obd(p_border) =
+	 PRE
+		  p_border : t_border_i &
+		  p_border : t_border
+	 THEN
+		  res := bool(p_border : obd)
+	 END;
+
+	 res <-- is_exit_newly_released(p_exit) =
+	 PRE
+		  p_exit : t_exit_i &
+		  p_exit : t_exit
+	 THEN
+		  res := bool(p_exit : oed_prev - oed)
+	 END
 	
 
 END

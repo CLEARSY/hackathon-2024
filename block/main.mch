@@ -94,9 +94,8 @@ OPERATIONS
 		  obd  <: t_border &
 		  ob   <: t_block  &
 		  tdla <: t_block  
-
-		  /* TO COMPLETE: Property 1 */
-
+		  
+		  /* TO COMPLETE with Property 1 */
 		  )
 	END
 

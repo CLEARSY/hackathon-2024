@@ -34,21 +34,21 @@ DEFINITIONS
 ABSTRACT_VARIABLES
 	
 	ob,
-	tdla
+	tdl_alarm
 
 	
 INVARIANT
 	
 	ob        <: t_block &
-	tdla <: t_block
+	tdl_alarm <: t_block
 
 	
 INITIALISATION
 	
 	ob,
-	tdla
+	tdl_alarm
 	:(ob        <: t_block &
-	  tdla <: t_block
+	  tdl_alarm <: t_block
 	  )
 
 	
@@ -82,12 +82,11 @@ OPERATIONS
 	  *************************************************************************/
 	BEGIN
 		ob,
-		tdla
+		tdl_alarm
 		:(ob        <: t_block &
-		  tdla <: t_block 
-
-		  /* TO COMPLETE: Property 1 */
-
+		  tdl_alarm <: t_block 
+		  
+		  /* TO COMPLETE with Property 1 */
 		  )
 	END
 
