@@ -1,0 +1,5 @@
+﻿THEORY User_Pass IS
+Operation(Operation_cond_unmask) & ff(0) & mp & pp(rt.1 | 5) & mp & pp(rt.1 | 5);
+Operation(Operation_cond_release) & ff(0) & mp & pp(rt.1 | 5) & mp & pp(rt.1 | 5) & mp & pp(rt.1 | 5) & mp & pp(rt.1 | 5);
+Operation(Operation_cond_release) & ff(0) & mp & pp(rt.1 | 5) & mp
+END 

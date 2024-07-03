@@ -1,0 +1,67 @@
+IMPLEMENTATION
+        block_services_i
+REFINES
+        block_services
+DEFINITIONS
+	d_free_b  == (t_block - ob) ;
+	d_free_td == (t_block - otd) ;
+	d_bd2b    == (cfg_b2bd_up \/ cfg_b2bd_down)~
+SEES
+        configuration, inputs
+IMPORTS
+		block_miniservices
+PROMOTES
+		read_mb, unmask_block, mask_block,
+		read_tdla, alarm_block, unalarm_block, clear_tdla,
+		read_ob, occ_block, unocc_block
+
+OPERATIONS
+
+	p_res <-- cond_unmask(p_block) = BEGIN
+		p_res <-- is_free_block(p_block);
+		IF p_res = FALSE THEN
+			p_res <-- has_up_free_or_freetd(p_block);
+			IF p_res = TRUE THEN
+				p_res <-- has_down_free_or_freetd(p_block)
+			END
+		END
+	END;
+
+	p_res <-- cond_mask(p_block) = VAR l_res IN
+		p_res <-- has_occupied_bd(p_block);
+		IF p_res = TRUE THEN
+			l_res <-- read_tdla(p_block);
+			IF l_res = TRUE THEN
+				p_res := FALSE
+			END
+		END
+	END;
+	
+	p_res <-- cond_alarm(p_block) = VAR l_res IN
+		p_res <-- is_occ_unmasked_block(p_block);
+		IF p_res = TRUE THEN
+			l_res <-- read_otd(p_block);
+			IF l_res = TRUE THEN
+				p_res := FALSE
+			END
+		END
+	END;
+
+	p_res <-- cond_release(p_block) = BEGIN
+		p_res <-- is_init_or_unalarmed_block(p_block);
+		IF p_res = TRUE THEN
+			p_res <-- has_up_tr_ed(p_block);
+			IF p_res = FALSE THEN
+				p_res <-- has_down_tr_ed(p_block)
+			END
+		END
+	END;
+
+	p_res <-- cond_occupy(p_block) = BEGIN
+		p_res <-- has_occupied_bd(p_block);
+		IF p_res = FALSE THEN
+			p_res <-- read_otd(p_block)
+		END
+	END
+
+END
