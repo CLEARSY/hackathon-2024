@@ -138,10 +138,9 @@ OPERATIONS
 	  If no TDL alarm acknowledgment is received then TDL alarm remains
 	  unchanged.
 	  *************************************************************************/
-	BEGIN    
-	    skip
-	    /* TO COMPLETE: update tdla */
-	END
+	IF  cc_tdl_ack = TRUE THEN
+		tdla := {}
+	END	
 	;
 
 	set_tdl_alarm =
@@ -225,8 +224,9 @@ OPERATIONS
 	  occupied or when its trackside detector is occupied.
 	  ************************************************************************/
 	BEGIN
-	   skip
-	   /* TO COMPLETE:  ob := ... */
+		ob := ob \/
+		    d_bd2b[obd] \/
+		    otd
 	END;
 
 	 p_res <-- read_ob(p_block) =
