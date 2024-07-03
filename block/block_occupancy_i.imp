@@ -1,0 +1,88 @@
+IMPLEMENTATION
+	block_occupancy_i
+REFINES
+	block_occupancy
+SEES
+	configuration,
+	inputs
+IMPORTS
+	block_occupancy_it, block_services
+PROMOTES
+	read_tdla, read_ob
+DEFINITIONS
+	d_free_b  == (t_block - ob) ;
+	d_free_td == (t_block - otd) ;
+	d_bd2b    == (cfg_b2bd_up \/ cfg_b2bd_down)~
+
+OPERATIONS
+
+	unmask_blocks = VAR l_cont IN
+		l_cont <-- init_iteration_t_block;
+		WHILE l_cont = TRUE DO
+			VAR l_block, l_mask, l_remove IN
+				l_cont, l_block <-- iterate_t_block;
+				l_mask <-- read_mb(l_block);
+				IF l_mask = TRUE THEN
+					l_remove <-- cond_unmask(l_block);
+					IF l_remove = TRUE THEN
+						unmask_block(l_block)
+					END
+				END
+			END
+		INVARIANT
+			l_cont = bool(block_to_treat /= {}) &
+			block_to_treat <: t_block &
+			treated_block <: t_block &
+			block_to_treat /\ treated_block = {} &
+			block_to_treat \/ treated_block = t_block &
+			mb <: t_block 
+			
+			/* TO COMPLETE: invariant on mb = mb$0 - ... */
+		VARIANT
+			card(block_to_treat)
+		END
+	END;
+
+	release_tdl_alarm = VAR l_clear IN
+		l_clear <-- read_cc_tdl_ack;
+		IF l_clear  = TRUE THEN
+			clear_tdla
+		END
+	END;
+
+	set_tdl_alarm = skip;
+	/* TO COMPLETE */
+
+	mask_blocks = skip;
+	/* TO COMPLETE */
+	
+	release_blocks = skip;
+	/* TO COMPLETE */
+
+	occupy_blocks = VAR l_cont IN
+		l_cont <-- init_iteration_t_block;
+		WHILE l_cont = TRUE DO
+			VAR l_block, l_occ, l_put IN
+				l_cont, l_block <-- iterate_t_block;
+				l_occ <-- read_ob(l_block);
+				IF l_occ = FALSE THEN
+					l_put <-- cond_occupy(l_block);
+					IF l_put = TRUE THEN
+						occ_block(l_block)
+					END
+				END
+			END
+		INVARIANT
+			l_cont = bool(block_to_treat /= {}) &
+			block_to_treat <: t_block &
+			treated_block <: t_block &
+			block_to_treat /\ treated_block = {} &
+			block_to_treat \/ treated_block = t_block &
+			ob <: t_block &
+			ob = ob$0 \/ ((d_bd2b[obd] \/ otd) /\ treated_block)
+		VARIANT
+			card(block_to_treat)
+		END
+	END
+
+END

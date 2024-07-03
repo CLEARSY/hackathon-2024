@@ -1,0 +1,12 @@
+﻿THEORY User_Pass IS
+Operation(Operation_unmask_blocks) & ff(0) & dd(0) & eh(mb$2,_h,Goal) & mp;
+Operation(Operation_unmask_blocks) & ff(0) & mp & ss & mp;
+Operation(Operation_unmask_blocks) & ff(0) & dd(0) & ah(block_to_treat : FIN(block_to_treat)) & ah(block_to_treat <: t_block) & dd(0) & ah(t_block : FIN(INTEGER)) & mp & mp & ah(block_to_treat : FIN(INTEGER)) & mp & mp & mp & ar(SimplifyTryEnsCard.3,Goal) & ah(block_to_treat/\{n_bl} = {n_bl}) & mp & dd(0) & eh(block_to_treat/\{n_bl},_h,Goal) & ss & mp;
+Operation(Operation_set_tdl_alarm) & ff(0) & mp & ss & mp;
+Operation(Operation_set_tdl_alarm) & ff(0) & dd(0) & ah(block_to_treat : FIN(block_to_treat)) & ah(block_to_treat <: t_block) & dd(0) & ah(t_block : FIN(INTEGER)) & mp & mp & ah(block_to_treat : FIN(INTEGER)) & mp & mp & mp & ar(SimplifyTryEnsCard.3,Goal) & ah(block_to_treat/\{n_bl} = {n_bl}) & mp & dd(0) & eh(block_to_treat/\{n_bl},_h,Goal) & ss & mp;
+Operation(Operation_mask_blocks) & ff(0) & mp & ss & mp;
+Operation(Operation_mask_blocks) & ff(0) & dd(0) & ah(block_to_treat : FIN(block_to_treat)) & ah(block_to_treat <: t_block) & dd(0) & ah(t_block : FIN(INTEGER)) & mp & mp & ah(block_to_treat : FIN(INTEGER)) & mp & mp & mp & ar(SimplifyTryEnsCard.3,Goal) & ah(block_to_treat/\{n_bl} = {n_bl}) & mp & dd(0) & eh(block_to_treat/\{n_bl},_h,Goal) & ss & mp;
+Operation(Operation_release_blocks) & ff(0) & mp & ss & mp;
+Operation(Operation_release_blocks) & ff(0) & dd(0) & ah(block_to_treat : FIN(block_to_treat)) & ah(block_to_treat <: t_block) & dd(0) & ah(t_block : FIN(INTEGER)) & mp & mp & ah(block_to_treat : FIN(INTEGER)) & mp & mp & mp & ar(SimplifyTryEnsCard.3,Goal) & ah(block_to_treat/\{n_bl} = {n_bl}) & mp & dd(0) & eh(block_to_treat/\{n_bl},_h,Goal) & ss & mp;
+Operation(Operation_occupy_blocks) & ff(0) & mp & ss & mp
+END 
