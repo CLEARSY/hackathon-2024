@@ -1,0 +1,73 @@
+IMPLEMENTATION
+	block_miniservices_i
+REFINES
+	block_miniservices
+SEES
+	configuration, inputs
+CONCRETE_VARIABLES
+	tab_ob,tab_mb,tab_tdla
+INVARIANT
+	tab_ob : t_block_i --> BOOL &
+	tab_mb : t_block_i --> BOOL &
+	tab_tdla : t_block_i --> BOOL &
+	ob = (tab_ob~[{TRUE}]/\ t_block) &
+	mb = (tab_mb~[{TRUE}]/\ t_block) &
+	tdla = (tab_tdla~[{TRUE}]/\ t_block)
+INITIALISATION
+	tab_ob := t_block_i*{FALSE}; /* REWRITE INIT WITH CORRECT VALUES*/
+	tab_mb := t_block_i*{FALSE}; /* REWRITE INIT WITH CORRECT VALUES*/
+	tab_tdla := t_block_i*{FALSE} /* REWRITE INIT WITH CORRECT VALUES*/
+OPERATIONS
+
+	p_res <-- read_mb(p_block) = skip; /* COMPLETE */
+
+	unmask_block(p_block) = skip; /* COMPLETE */
+
+
+	mask_block(p_block) = skip; /* COMPLETE */
+
+
+	p_res <-- read_tdla(p_block) = skip; /* COMPLETE */
+
+
+	alarm_block(p_block) = skip; /* COMPLETE */
+
+
+	unalarm_block(p_block) = skip; /* COMPLETE */
+
+	clear_tdla = skip; /* COMPLETE */
+
+
+	p_res <-- read_ob(p_block) = skip; /* COMPLETE */
+
+
+	occ_block(p_block) = skip; /* COMPLETE */
+
+
+	unocc_block(p_block) = skip; /* COMPLETE */
+
+	p_res <-- is_free_block(p_block) = skip; /* COMPLETE */
+
+	
+	p_res <-- has_up_free_or_freetd(p_block) = skip; /* COMPLETE */
+
+
+	p_res <-- has_down_free_or_freetd(p_block) = skip; /* COMPLETE */
+
+
+	p_res <-- has_occupied_bd(p_block) = skip; /* COMPLETE */
+
+
+	p_res <-- is_occ_unmasked_block(p_block) = skip; /* COMPLETE */
+
+
+	p_res <-- is_init_or_unalarmed_block(p_block) = skip; /* COMPLETE */
+
+
+	p_res <-- has_up_tr_ed(p_block) = skip; /* COMPLETE */
+
+
+	p_res <-- has_down_tr_ed(p_block) = skip /* COMPLETE */
+
+
+END

@@ -1,0 +1,27 @@
+IMPLEMENTATION
+	block_occupancy_it_i
+REFINES
+	block_occupancy_it
+SEES
+	configuration
+
+CONCRETE_VARIABLES
+   rg_t_block_courant
+
+INVARIANT
+ rg_t_block_courant : NAT & 
+ rg_t_block_courant : (0 .. size(bijection_t_block)) &
+ block_to_treat = bijection_t_block[(1 .. rg_t_block_courant)]
+
+INITIALISATION
+   rg_t_block_courant := 0 /* REPLACES WITH CORRECT INIT */
+
+OPERATIONS
+
+   cond <-- init_iteration_t_block = skip;
+   /* TO COMPLETE */
+
+   cond,bl <-- iterate_t_block = skip
+   /* TO COMPLETE */
+
+END

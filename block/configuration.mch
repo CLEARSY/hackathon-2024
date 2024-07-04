@@ -154,7 +154,7 @@ ABSTRACT_CONSTANTS
 	  block does not have any upward exit detector.
 	  *************************************************************************/
 
-	cfg_b2ed_down
+	cfg_b2ed_down,
 	/***************************************************************************
 	  Constant Name: cfg_b2ed_down
 	  
@@ -164,7 +164,7 @@ ABSTRACT_CONSTANTS
 	  Function giving for a block its downward exit detector. A downward
 	  terminal block does not have any downward exit detector.
 	  *************************************************************************/
-
+    bijection_t_block
 
 PROPERTIES
 	
@@ -185,9 +185,110 @@ PROPERTIES
 	cfg_b2bd_up     : t_block +-> t_border &
 	cfg_b2bd_down   : t_block +-> t_border &
 	cfg_b2ed_up     : t_block +-> t_exit   &
-	cfg_b2ed_down   : t_block +-> t_exit
+	cfg_b2ed_down   : t_block +-> t_exit &
 
-	
+    bijection_t_block  : NAT +-> t_block_i &
+    bijection_t_block  : perm(t_block) &
+    card(t_block) = size(bijection_t_block) &
+    card(t_block) <= MAXINT
+    
+OPERATIONS
+    
+    ee <-- read_bijection_t_block ( rg ) =
+    PRE
+        rg : NAT &
+        rg : dom(bijection_t_block)
+    THEN
+        ee := bijection_t_block(rg)
+    END;
+    
+    ee <-- read_card_t_block = 
+    BEGIN
+        ee := card(t_block)
+    END;
+    p_belongs, p_up <-- read_all_cfg_b2b_up(p_block) =
+    PRE
+        p_block : t_block_i &
+        p_block : t_block
+    THEN
+        p_belongs := bool(p_block : dom(cfg_b2b_up)) ||
+        IF p_block : dom(cfg_b2b_up)
+        THEN
+            p_up := cfg_b2b_up(p_block)
+        ELSE
+            p_up :: t_block_i
+        END
+    END;
+    
+    p_belongs, p_down <-- read_all_cfg_b2b_down(p_block) =
+    PRE
+        p_block : t_block_i &
+        p_block : t_block
+    THEN
+        p_belongs := bool(p_block : dom(cfg_b2b_down)) ||
+        IF p_block : dom(cfg_b2b_down)
+        THEN
+            p_down := cfg_b2b_down(p_block)
+        ELSE
+            p_down :: t_block_i
+        END
+    END;
+    
+    p_belongs, p_up <-- read_all_cfg_b2bd_up(p_block) =
+    PRE
+        p_block : t_block_i &
+        p_block : t_block
+    THEN
+        p_belongs := bool(p_block : dom(cfg_b2bd_up)) ||
+        IF p_block : dom(cfg_b2bd_up)
+        THEN
+            p_up := cfg_b2bd_up(p_block)
+        ELSE
+            p_up :: t_border_i
+        END
+    END;
+    
+    p_belongs, p_down <-- read_all_cfg_b2bd_down(p_block) =
+    PRE
+        p_block : t_block_i &
+        p_block : t_block
+    THEN
+        p_belongs := bool(p_block : dom(cfg_b2bd_down)) ||
+        IF p_block : dom(cfg_b2bd_down)
+        THEN
+            p_down := cfg_b2bd_down(p_block)
+        ELSE
+            p_down :: t_border_i
+        END
+    END;
+    
+    p_belongs, p_up <-- read_all_cfg_b2ed_up(p_block) =
+    PRE
+        p_block : t_block_i &
+        p_block : t_block
+    THEN
+        p_belongs := bool(p_block : dom(cfg_b2ed_up)) ||
+        IF p_block : dom(cfg_b2ed_up)
+        THEN
+            p_up := cfg_b2ed_up(p_block)
+        ELSE
+            p_up :: t_exit_i
+        END
+    END;
+    
+    p_belongs, p_down <-- read_all_cfg_b2ed_down(p_block) =
+    PRE
+        p_block : t_block_i &
+        p_block : t_block
+    THEN
+        p_belongs := bool(p_block : dom(cfg_b2ed_down)) ||
+        IF p_block : dom(cfg_b2ed_down)
+        THEN
+            p_down := cfg_b2ed_down(p_block)
+        ELSE
+            p_down :: t_exit_i
+        END
+    END	
 END
 
 
