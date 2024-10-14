@@ -37,7 +37,7 @@ This site contains some resources used for the Hackathon:
 - pdfs of the slides presented (to come - updated every day during the hackathon)
 
 Required modelling tools are:
-- [Atelier B](https://www.atelierb.eu/en/atelier-b-support-maintenance/download-atelier-b/)  (installer version 24.04)
+- [Atelier B](https://www.atelierb.eu/en/atelier-b-support-maintenance/download-atelier-b/)  (Atelier B 24.04 CLEARSY Safety Platform)
 - [ProB](https://prob.hhu.de/w/index.php?title=Installation) (zip + third-party installers)
 
 
